@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: user
+  main:
+    allow-bean-definition-overriding: true
+
+  profiles:
+    include:
+    - public
+    - config
+    - datasource

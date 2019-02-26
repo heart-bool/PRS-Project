@@ -1,0 +1,26 @@
+#prs:
+#  swagger:
+#    title: "prs 在线接口文档"
+#    description: "prs 用户API在线接口文档"
+#    enable: true
+#    version: "1.0.0"
+#  redis:
+#    accept-package: com.prs
+#  token:
+#    expire: 604800000
+#    refresh: 604800000
+#    keyPrefix: "LOGIN_HASH_TABLE"
+#
+#spring:
+#  datasource:
+#    url: jdbc:mysql://172.16.135.132:3306/prs-user?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+#    username: admin
+#    password: admin
+#  redis:
+#    host: 172.16.135.132
+#    port: 6379
+#    password: admin123
+#
+#logging:
+#  level:
+#    com.prs.auth.mapper: DEBUG

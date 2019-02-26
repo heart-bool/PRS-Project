@@ -1,0 +1,12 @@
+prs:
+  swagger:
+    title: "prs 在线接口文档"
+    description: "prs 消息API在线接口文档"
+    enable: true
+    version: "1.0.0"
+    terms-of-service-url: "/"
+#spring:
+#  redis:
+#    host: 172.16.135.141
+#    port: 6379
+

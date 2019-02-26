@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.prs</groupId>
+    <artifactId>prs-project</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>prs-project</name>
+    <description>父pom</description>
+
+
+    <modules>
+        <module>prs-base</module>
+        <module>prs-service</module>
+        <module>prs-common</module>
+    </modules>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <project.config.resources.dir>/Users/bool/Project/java/prs/prs-project/prs-config/resources</project.config.resources.dir>
+        <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
+        <project.global.version>1.0.0</project.global.version>
+        <spring-boot-admin.version>2.1.1</spring-boot-admin.version>
+        <tifang.service.version>1.0.0</tifang.service.version>
+        <lombok.version>1.16.20</lombok.version>
+        <spring.boot.admin.version>2.0.1</spring.boot.admin.version>
+        <swagger2.version>2.9.2</swagger2.version>
+        <mysql.version>5.1.26</mysql.version>
+        <hikaricp.version>3.2.0</hikaricp.version>
+        <mybatis.spring.boot.version>1.3.2</mybatis.spring.boot.version>
+        <pagehelper.version>1.2.5</pagehelper.version>
+        <joda.version>2.9.9</joda.version>
+        <mybatis.version>3.4.6</mybatis.version>
+        <guava.version>3.4.6</guava.version>
+    </properties>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.3.RELEASE</version>
+    </parent>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.20</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring-boot-admin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.prs.common</groupId>
+                <artifactId>prs-swagger</artifactId>
+                <version>${project.global.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.prs.common</groupId>
+                <artifactId>prs-aop</artifactId>
+                <version>${project.global.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.prs.common</groupId>
+                <artifactId>prs-cache</artifactId>
+                <version>${project.global.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.prs.common</groupId>
+                <artifactId>prs-domain</artifactId>
+                <version>${project.global.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prs.common</groupId>
+                <artifactId>prs-tools</artifactId>
+                <version>${project.global.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                    <include>**/*.yaml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.yml</exclude>
+                    <exclude>**/*.yaml</exclude>
+                    <exclude>**/*.properties</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.config.resources.dir}</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.yml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source> <!-- 源代码使用的JDK版本 -->
+                    <target>1.8</target> <!-- 需要生成的目标class文件的编译版本 -->
+                    <encoding>UTF-8</encoding><!-- 字符集编码 -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <defaultGoal>[clean,package,deploy]</defaultGoal>
+    </build>
+
+
+</project>

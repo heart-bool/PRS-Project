@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.prs.cache.config.RedisAutoConfiguration,\
+  com.prs.cache.tools.StringRedisTools,\
+  com.prs.cache.tools.HashRedisTools
+

@@ -1,0 +1,6 @@
+prs:
+  swagger:
+    title: "prs 在线接口文档"
+    description: "prs 在线接口文档"
+    enable: true
+    version: "1.0.0"

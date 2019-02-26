@@ -1,0 +1,24 @@
+server:
+  port: 8931
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      discovery:
+        enabled: false
+        service-id: ${spring.application.name}
+      server:
+        git:
+          uri: https://github.com/heart-bool/prs-config-repo.git
+          searchPaths: /
+          skipSslValidation: true
+#          username: wangfeng
+#          password: wangfeng
+          default-label: master
+      retry:
+        max-attempts: 2
+        max-interval: 2000
+  profiles:
+    include: public

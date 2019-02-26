@@ -1,0 +1,17 @@
+prs:
+  swagger:
+    enable: true
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      default-filters:
+#      - StripPrefix=1
+      - Hystrix=forward:/fallback
+      httpclient:
+        pool:
+          acquire-timeout: 10000
+

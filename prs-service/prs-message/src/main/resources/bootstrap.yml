@@ -1,0 +1,12 @@
+server:
+  port: 9110
+spring:
+  application:
+    name: message
+  main:
+    allow-bean-definition-overriding: true
+
+  profiles:
+    include:
+    - public
+    - config

@@ -1,0 +1,32 @@
+spring:
+
+  application:
+    name: admin-server
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+  boot:
+    admin:
+      discovery:
+        enabled: true
+        ignored-services: ${spring.application.name}
+        converter:
+          health-endpoint-path:
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    hostname: ${spring.application.name}
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://eureka-server:8911/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 8921
+
