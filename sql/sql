@@ -1,0 +1,18 @@
+-- auto-generated definition
+create table t_user (
+  id        bigint auto_increment comment '主键' primary key,
+  user_name varchar(64)      not null comment '姓名',
+  nike_name varchar(64)      null comment '昵称',
+  head_img  varchar(200)     null comment '头像',
+  email     varchar(128)     null comment '邮箱',
+  phone     varchar(64)      not null comment '手机号',
+  age       int(3) default 0 null comment '年龄',
+  gender    int(1) default 0 null comment '1男 2女 0未填写',
+  password  varchar(128)     not null comment '密码',
+  created   timestamp        null comment '创建时间',
+  updated   timestamp        null comment '更新时间',
+  constraint email_UNIQUE unique (email),
+  constraint phone_UNIQUE unique (phone),
+  constraint user_name_UNIQUE unique (user_name)
+) comment '用户表';
+
