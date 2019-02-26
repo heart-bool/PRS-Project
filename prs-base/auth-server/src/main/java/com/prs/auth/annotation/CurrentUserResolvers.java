@@ -2,6 +2,7 @@ package com.prs.auth.annotation;
 
 import com.prs.auth.execption.AuthException;
 import com.prs.auth.properties.TokenProperties;
+import com.prs.cache.Constant;
 import com.prs.cache.tools.HashRedisTools;
 import com.prs.domain.enu.ApiResponseEnum;
 import com.prs.domain.response.TokenResponseEntity;
@@ -32,7 +33,7 @@ public class CurrentUserResolvers implements HandlerMethodArgumentResolver {
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         String token = webRequest.getHeader("token");
-        TokenResponseEntity user = (TokenResponseEntity) hashRedisTools.get(tokenProperties.getKeyPrefix(), token);
+        TokenResponseEntity user = (TokenResponseEntity) hashRedisTools.get(Constant.AUTH_HASH, token);
         if (user == null || System.currentTimeMillis() > user.getExpire()) {
             throw new AuthException(ApiResponseEnum.UNAUTHORIZED);
         }

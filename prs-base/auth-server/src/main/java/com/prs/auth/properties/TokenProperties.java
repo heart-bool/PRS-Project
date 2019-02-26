@@ -17,5 +17,4 @@ public class TokenProperties {
 
 	private long expire;
 	private long refresh;
-	private String keyPrefix;
 }

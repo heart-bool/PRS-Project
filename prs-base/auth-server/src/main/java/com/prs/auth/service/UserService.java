@@ -4,6 +4,7 @@ import com.prs.auth.entity.User;
 import com.prs.auth.execption.AuthException;
 import com.prs.auth.mapper.UserMapper;
 import com.prs.auth.properties.TokenProperties;
+import com.prs.cache.Constant;
 import com.prs.cache.tools.HashRedisTools;
 import com.prs.domain.enu.ApiResponseEnum;
 import com.prs.domain.response.TokenResponseEntity;
@@ -100,7 +101,7 @@ public class UserService {
 		// 生成 token --生成规则: 使用用户名生成唯一MD5值
 		String token = MD5Tools.md5(user.getUserName());
 		// 检查重复登录
-		TokenResponseEntity is = (TokenResponseEntity) hashRedisTools.get(tokenProperties.getKeyPrefix(), token);
+		TokenResponseEntity is = (TokenResponseEntity) hashRedisTools.get(Constant.AUTH_HASH, token);
 		if (is != null &&  System.currentTimeMillis() < is.getExpire()) {
 			throw new AuthException(ApiResponseEnum.LOGIN_REPEAT_ERROR);
 		}
@@ -119,7 +120,7 @@ public class UserService {
 		tokenUser.setRefresh(refresh);
 
 		// 生成缓存
-		hashRedisTools.put(tokenProperties.getKeyPrefix(), token, tokenUser);
+		hashRedisTools.put(Constant.AUTH_HASH, token, tokenUser);
 		res.put("token", token);
 		res.put("userInfo", tokenUser);
 		log.info("用户登录成功, 用户名:{}", user.getUserName());
@@ -144,12 +145,12 @@ public class UserService {
 	 * @throws AuthException
 	 */
 	public void refreshToken(String token, long longTime) throws AuthException {
-		TokenResponseEntity is = (TokenResponseEntity) hashRedisTools.get(tokenProperties.getKeyPrefix(), token);
+		TokenResponseEntity is = (TokenResponseEntity) hashRedisTools.get(Constant.AUTH_HASH, token);
 		if (is == null) throw new AuthException(ApiResponseEnum.LOGIN_NOT_ERROR);
 
 		is.setExpire(is.getExpire() + longTime);
 		is.setRefresh(is.getRefresh() + longTime);
 
-		hashRedisTools.put(tokenProperties.getKeyPrefix(), token, is);
+		hashRedisTools.put(Constant.AUTH_HASH, token, is);
 	}
 }
