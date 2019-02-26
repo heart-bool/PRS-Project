@@ -28,4 +28,10 @@ public class HashRedisTools {
 		Assert.notNull(hashKey, RedisTools.HASH_KEY_ASSERT);
 		return hashOperations.get(key, hashKey);
 	}
+
+	public long delHashSubKey(String key, String hashKey) {
+		Assert.notNull(key, RedisTools.KEY_ASSERT);
+		Assert.notNull(hashKey, RedisTools.HASH_KEY_ASSERT);
+		return hashOperations.delete(key, hashKey);
+	}
 }
