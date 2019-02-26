@@ -6,6 +6,7 @@ import java.io.Serializable;
 public enum ApiResponseEnum implements Serializable {
 	SUCCESS(0, "success"),
 	ERROR(99999, "server error"),
+	TIMEOUT(503, "timeout"),
 	UNAUTHORIZED(400, "UNAUTHORIZED"),
 	USER_NOT_FOUND(1000, "user not found"),
 	LOGIN_ERROR(1001, "用户名不存在或密码错误"),
