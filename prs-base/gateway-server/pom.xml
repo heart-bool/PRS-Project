@@ -51,5 +51,13 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.prs.common</groupId>
+            <artifactId>prs-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.prs.common</groupId>
+            <artifactId>prs-cache</artifactId>
+        </dependency>
     </dependencies>
 </project>

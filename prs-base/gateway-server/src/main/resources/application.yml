@@ -1,6 +1,13 @@
 prs:
   swagger:
     enable: true
+  gateway:
+    noTokenApis:
+    - /register
+    - /login
+  redis:
+    accept-package: com.prs
+
 spring:
   cloud:
     gateway:
@@ -9,9 +16,15 @@ spring:
           enabled: true
           lowerCaseServiceId: true
       default-filters:
-#      - StripPrefix=1
-      - Hystrix=forward:/fallback
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
       httpclient:
         pool:
           acquire-timeout: 10000
+  redis:
+    host: 172.16.135.132
+    port: 6379
+    password: admin123
 
