@@ -36,7 +36,7 @@ public class SwaggerAutoConfiguration {
 	public Docket createRestApi() {
 		ParameterBuilder tokenPar = new ParameterBuilder();
 		List<Parameter> pars = new ArrayList<>();
-		tokenPar.name("token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(true).build();
+		tokenPar.name("token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
 		pars.add(tokenPar.build());
 		Predicate<String> basePath = s -> true;
 
